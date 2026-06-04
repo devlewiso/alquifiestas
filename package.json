@@ -1,0 +1,47 @@
+{
+  "name": "alquifiestas",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Marketplace B2B2C de alquiler de equipos y servicios para eventos en Guatemala y Centroamérica",
+  "scripts": {
+    "dev": "npm run dev:web",
+    "dev:web": "npm run dev --workspace=apps/web",
+    "dev:marketing": "npm run dev --workspace=apps/marketing",
+    "build": "npm run build --workspaces",
+    "build:web": "npm run build --workspace=apps/web",
+    "build:marketing": "npm run build --workspace=apps/marketing",
+    "lint": "npm run lint --workspaces",
+    "lint:web": "npm run lint --workspace=apps/web",
+    "test": "npm run test --workspaces",
+    "clean": "rm -rf node_modules apps/*/node_modules packages/*/node_modules apps/*/dist apps/*/.next",
+    "supabase:start": "cd supabase && supabase start",
+    "supabase:stop": "cd supabase && supabase stop",
+    "supabase:migrate": "cd supabase && supabase db push",
+    "n8n:start": "docker compose -f infra/docker/n8n.yml up -d"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "keywords": [
+    "eventos",
+    "alquiler",
+    "marketplace",
+    "guatemala",
+    "multi-currency"
+  ],
+  "author": "Iran Lewis <iran@neuralcodelab.com>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/neuralcodelab/alquifiestas.git"
+  },
+  "bugs": {
+    "url": "https://github.com/neuralcodelab/alquifiestas/issues"
+  },
+  "homepage": "https://github.com/neuralcodelab/alquifiestas#readme"
+}
