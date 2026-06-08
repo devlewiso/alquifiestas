@@ -120,10 +120,10 @@ export default function Home() {
               <p className="text-muted-foreground mt-1">Los mejor calificados por la comunidad</p>
             </div>
             <Link
-              href="/search"
+              href="/providers"
               className="hidden sm:inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
             >
-              Explorar <ArrowRight className="w-4 h-4" />
+              Ver todos los proveedores <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -238,14 +238,17 @@ export default function Home() {
             © 2026 Alquifiestas — Hecho con ❤️ en Guatemala
           </p>
           <div className="flex gap-6 text-sm text-muted-foreground">
-            <a href="#" className="hover:text-foreground transition-colors">
+            <a href="/terms" className="hover:text-foreground transition-colors">
               Términos
             </a>
-            <a href="#" className="hover:text-foreground transition-colors">
+            <a href="/privacy" className="hover:text-foreground transition-colors">
               Privacidad
             </a>
-            <a href="#" className="hover:text-foreground transition-colors">
+            <a href="/contact" className="hover:text-foreground transition-colors">
               Contacto
+            </a>
+            <a href="/faq" className="hover:text-foreground transition-colors">
+              FAQ
             </a>
           </div>
         </div>
