@@ -71,9 +71,18 @@ supabase/.branches
 supabase/.temp
 supabase/functions/*/deno.lock
 
-# n8n
+# n8n (descartado, legacy)
 n8n/workflows/*.json
 n8n/credentials/
+
+# Engine / motor de automatización (stack a definir)
+engine/.env
+
+# Local env files (allow .env.example)
+!.env.example
+
+# pnpm
+.pnpm-store/
 
 # IDE
 .idea/

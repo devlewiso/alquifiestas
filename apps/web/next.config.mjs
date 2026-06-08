@@ -1,0 +1,31 @@
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "*.supabase.co",
+      },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+    ],
+  },
+  async redirects() {
+    return [
+      {
+        source: "/dashboard",
+        destination: "/dashboard/client",
+        permanent: false,
+      },
+      {
+        source: "/dashboard/provider",
+        destination: "/dashboard/provider",
+        permanent: false,
+      },
+    ];
+  },
+};
+
+export default nextConfig;
