@@ -13,6 +13,7 @@ export default function PublicLayout({
           </a>
           <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
             <a href="/search" className="hover:text-primary transition-colors">Buscar</a>
+            <a href="/recommendations" className="hover:text-primary transition-colors">Para vos</a>
             <a href="/categories" className="hover:text-primary transition-colors">Categorías</a>
             <a href="/how-it-works" className="hover:text-primary transition-colors">Cómo funciona</a>
           </nav>
