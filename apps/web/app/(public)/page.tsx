@@ -6,7 +6,7 @@ import { seedProviders } from "@/lib/seeds/providers";
 import { CategoryCard } from "@/components/products/CategoryCard";
 import { ProductCard } from "@/components/products/ProductCard";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Star, TrendingUp, Heart } from "lucide-react";
+import { ArrowRight, Star, TrendingUp, Heart, Search as SearchIcon } from "lucide-react";
 
 export default function Home() {
   const featuredProducts = seedProducts.slice(0, 8);
@@ -29,8 +29,9 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/search"
-              className="inline-flex items-center justify-center bg-primary text-white font-semibold px-8 py-3 rounded-xl hover:bg-primary-600 transition-colors text-lg"
+              className="inline-flex items-center justify-center bg-primary text-white font-semibold px-8 py-3 rounded-xl hover:bg-primary-600 transition-colors text-lg gap-2"
             >
+              <SearchIcon className="w-5 h-5" />
               Buscar proveedores
             </Link>
             <Link
