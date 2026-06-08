@@ -19,11 +19,6 @@ const nextConfig = {
         destination: "/dashboard/client",
         permanent: false,
       },
-      {
-        source: "/dashboard/provider",
-        destination: "/dashboard/provider",
-        permanent: false,
-      },
     ];
   },
 };
