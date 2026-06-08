@@ -172,10 +172,12 @@ export default function ProductPage({ params }: ProductPageProps) {
                   <MessageCircle className="w-5 h-5" />
                   Cotizar por WhatsApp
                 </a>
-                <Button variant="outline" className="w-full gap-2">
-                  <Calendar className="w-4 h-4" />
-                  Agregar a mi evento
-                </Button>
+                <Link href={`/booking/new?product=${product.id}&provider=${provider?.id || ""}`}>
+                  <Button variant="outline" className="w-full gap-2">
+                    <Calendar className="w-4 h-4" />
+                    Reservar ahora
+                  </Button>
+                </Link>
               </div>
             </div>
 

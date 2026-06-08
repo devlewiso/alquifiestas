@@ -32,6 +32,7 @@ import { seedProducts } from "@/lib/seeds/products";
 import { generateReviewsForProvider } from "@/lib/seeds/reviews";
 import { generateGalleryForProvider } from "@/lib/seeds/gallery";
 import { generateInventoryForProvider } from "@/lib/seeds/inventory";
+import { getCompletedBookingCount } from "@/lib/seeds/bookings";
 import { ProductCard } from "@/components/products/ProductCard";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -167,10 +168,12 @@ export default function ProviderPage({ params }: ProviderPageProps) {
                 <MessageCircle className="w-4 h-4" />
                 Cotizar por WhatsApp
               </a>
-              <Button variant="outline" size="sm" className="gap-2">
-                <Calendar className="w-4 h-4" />
-                Reservar
-              </Button>
+              <Link href={`/booking/new?provider=${provider.id}`}>
+                <Button variant="outline" size="sm" className="gap-2">
+                  <Calendar className="w-4 h-4" />
+                  Reservar
+                </Button>
+              </Link>
               <Button variant="outline" size="sm" className="gap-2">
                 <Mail className="w-4 h-4" />
                 Email
@@ -182,7 +185,7 @@ export default function ProviderPage({ params }: ProviderPageProps) {
         {/* Stats cards */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6">
           {[
-            { label: "Eventos completados", value: `${provider.review_count + 50}+`, icon: Calendar },
+            { label: "Eventos completados", value: `${getCompletedBookingCount(provider.id)}`, icon: Calendar },
             { label: "Años de experiencia", value: `${provider.years_experience}`, icon: TrendingUp },
             { label: "Productos", value: `${products.length}`, icon: Package },
             { label: "Rating", value: `${avgRating}/5`, icon: Star },
@@ -378,6 +381,10 @@ export default function ProviderPage({ params }: ProviderPageProps) {
           {/* REVIEWS TAB */}
           {activeTab === "reviews" && (
             <div className="grid lg:grid-cols-3 gap-8">
+              <div className="lg:col-span-3 flex items-center gap-2 bg-blue-50 border border-blue-200 text-blue-700 px-4 py-3 rounded-xl text-sm">
+                <ShieldCheck className="w-4 h-4 shrink-0" />
+                <span>Solo clientes que completaron una reserva con este proveedor pueden dejar reseñas. Cada reseña está vinculada a una reserva verificada.</span>
+              </div>
               {/* Rating summary */}
               <div className="lg:col-span-1">
                 <div className="bg-card border border-border rounded-xl p-6 sticky top-24">
@@ -427,10 +434,10 @@ export default function ProviderPage({ params }: ProviderPageProps) {
                           <div className="flex items-center gap-2 text-xs text-muted-foreground">
                             <span>{review.date}</span>
                             {review.verified && (
-                              <span className="flex items-center gap-1 text-green-600">
-                                <CheckCircle2 className="w-3 h-3" />
-                                Verificado
-                              </span>
+                              <Badge className="bg-green-100 text-green-700 border-green-200 text-[10px] px-1.5 py-0">
+                                <CheckCircle2 className="w-3 h-3 mr-0.5" />
+                                Reserva verificada
+                              </Badge>
                             )}
                           </div>
                         </div>
