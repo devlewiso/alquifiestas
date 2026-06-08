@@ -127,7 +127,7 @@ export const seedProducts: SeedProduct[] = [
     name: "Mesa de Dulces Tradicional",
     description: "Canillos de leche, cocadas, dulces de ayote, champurradas, atol de elote. Decoración incluida.",
     price_gtq: 1200, price_usd: 153, unit: "evento",
-    images: ["https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&h=400&fit=crop"],
+    images: ["/images/catering.jpg"],
     is_active: true, location: "Antigua Guatemala", rating: 4.8, review_count: 45,
   },
   {
@@ -146,7 +146,7 @@ export const seedProducts: SeedProduct[] = [
     name: "Arco de Globos Temático",
     description: "Arco orgánico de globos en colores a elección. 3 metros de ancho. Incluye delivery en Quiché.",
     price_gtq: 850, price_usd: 108, unit: "unidad",
-    images: ["https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&h=400&fit=crop"],
+    images: ["/images/decoracion.jpg"],
     is_active: true, location: "Santa Cruz del Quiché", rating: 4.8, review_count: 23,
   },
   {
