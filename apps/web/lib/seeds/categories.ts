@@ -15,7 +15,7 @@ export const categories: Category[] = [
     slug: "sillas-y-mesas",
     description: "Sillas Tiffany, Napoleón, plegables, mesas redondas, rectangulares y altas.",
     icon: "Armchair",
-    imageUrl: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=600&h=400&fit=crop",
+    imageUrl: "/images/silla.jpg",
     productCount: 124,
   },
   {
@@ -24,7 +24,7 @@ export const categories: Category[] = [
     slug: "inflables",
     description: "Castillos, resbaladeras, brincolines, combos y juegos acuáticos.",
     icon: "Castle",
-    imageUrl: "https://images.unsplash.com/photo-1562774053-701939374585?w=600&h=400&fit=crop",
+    imageUrl: "/images/inflable.jpg",
     productCount: 56,
   },
   {
@@ -33,7 +33,7 @@ export const categories: Category[] = [
     slug: "sonido-e-iluminacion",
     description: "DJ profesional, bafles, micrófonos, luces LED, pantallas y proyección.",
     icon: "Music",
-    imageUrl: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600&h=400&fit=crop",
+    imageUrl: "/images/dj.jpg",
     productCount: 89,
   },
   {
@@ -42,7 +42,7 @@ export const categories: Category[] = [
     slug: "carpas-y-toldos",
     description: "Carpas elegantes, toldos para exteriores, pabellones y cubiertas.",
     icon: "Tent",
-    imageUrl: "https://images.unsplash.com/photo-1510076857177-7470076d4098?w=600&h=400&fit=crop",
+    imageUrl: "/images/mesa.jpg",
     productCount: 34,
   },
   {
@@ -51,7 +51,7 @@ export const categories: Category[] = [
     slug: "catering",
     description: "Banquetes completos, bufets, bocadillos, mesas de dulces y bebidas.",
     icon: "Utensils",
-    imageUrl: "https://images.unsplash.com/photo-1555244162-803834f70033?w=600&h=400&fit=crop",
+    imageUrl: "/images/catering.jpg",
     productCount: 67,
   },
   {
@@ -60,7 +60,7 @@ export const categories: Category[] = [
     slug: "decoracion",
     description: "Arcos de globos, centros de mesa, cortinas, pistas de baile y backdrop.",
     icon: "Sparkles",
-    imageUrl: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&h=400&fit=crop",
+    imageUrl: "/images/decoracion.jpg",
     productCount: 92,
   },
   {
@@ -69,7 +69,7 @@ export const categories: Category[] = [
     slug: "fotografia-y-video",
     description: "Fotógrafos profesionales, cabinas fotográficas, drones y videógrafos.",
     icon: "Camera",
-    imageUrl: "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=600&h=400&fit=crop",
+    imageUrl: "/images/foto.jpg",
     productCount: 43,
   },
   {
@@ -78,7 +78,7 @@ export const categories: Category[] = [
     slug: "utensilios",
     description: "Vajillas, cristalería, cubiertos, ollas, dispensadores y calentadores.",
     icon: "Wine",
-    imageUrl: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&h=400&fit=crop",
+    imageUrl: "/images/vajilla.jpg",
     productCount: 78,
   },
 ];
