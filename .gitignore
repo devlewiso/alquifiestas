@@ -71,9 +71,8 @@ supabase/.branches
 supabase/.temp
 supabase/functions/*/deno.lock
 
-# n8n (descartado, legacy)
-n8n/workflows/*.json
-n8n/credentials/
+# Legacy tooling descartado (no existe en repo)
+n8n/
 
 # Engine / motor de automatización (stack a definir)
 engine/.env

@@ -1,7 +1,7 @@
 # Alquifiestas — Contexto Maestro para Hermes Agent
 
-> **Fecha de contexto:** 2026-06-07
-> **Estado del proyecto:** Planificación activa. Sin código implementado.
+> **Fecha de contexto:** 2026-06-08
+> **Estado del proyecto:** MVP frontend funcional con seeds en memoria. Auth con Supabase activa. ~20 commits. Backend real pendiente.
 > **Autor del contexto:** Iran Lewis <iran@neuralcodelab.com>
 > **Filosofía:** "Love as a metric. People over revenue. Action over explanation."
 
@@ -26,14 +26,14 @@
 
 | Aspecto | Estado |
 |---------|--------|
-| **Fase** | Planificación activa — sin código implementado aún |
-| **Repo Git** | ❌ No inicializado |
-| **Estructura de carpetas** | 📄 Solo documentación (`README.md`, `CLAUDE.md`, `package.json`) |
-| **Código fuente** | ❌ Ninguno |
-| **Base de datos** | ❌ No creada |
-| **Apps/web** | ❌ No creada |
+| **Fase** | MVP funcional — frontend completo, seeds en memoria, backend pendiente |
+| **Repo Git** | ✅ Inicializado, ~20 commits, conventional commits activo |
+| **Estructura de carpetas** | ✅ Monorepo con apps/web funcional |
+| **Código fuente** | ✅ Next.js 14 + TypeScript + Tailwind + Zustand + Supabase SSR |
+| **Base de datos** | ⚠️ Seeds en memoria + tipos TypeScript definidos. Tablas reales pendientes. |
+| **Apps/web** | ✅ Landing, búsqueda IA, perfiles, reservas, auth, dashboard dual |
 | **Business case** | ✅ `business-cases/alquifiestas-1m-year.html` (v2.0, Junio 2026) |
-| **Contexto maestro** | ✅ `CLAUDE.md` (última actualización: 2026-06-03) |
+| **Contexto maestro** | ✅ `CLAUDE.md` (última actualización: 2026-06-08) |
 
 ---
 
@@ -45,8 +45,8 @@
 | **Frontend Mobile (futuro)** | Tauri + React Native | Una codebase, multi-plataforma. |
 | **Backend** | Supabase (PostgreSQL + Auth + Edge Functions) | Auth lista, DB real-time, Row Level Security, Edge Functions serverless. |
 | **Edge Functions** | Deno (TypeScript) | Serverless en Supabase, baja latencia, sin servidor propio. |
-| **Automatización** | *Stack a definir* | Motor interno de flujos: booking, pagos, recordatorios, invoices. Evaluar: Edge Functions + cron, Inngest, Temporal, o BullMQ. |
-| **AI / Chat** | *Stack a definir* | Soporte automatizado y calificación de leads. Evaluar: solución propia con LLM, Intercom, o proveedor local LATAM. |
+| **Automatización** | *Stack a definir* | Motor interno de flujos: booking, pagos, recordatorios, invoices. Evaluar: Inngest, Temporal, o BullMQ. |
+| **AI / Chat** | ✅ Motor de matching propio | Scoring multi-factorial (texto, ubicación, presupuesto, rating, disponibilidad). Chat soporte a definir. |
 | **Comunicación** | WhatsApp Business API | Notificaciones, confirmaciones, recordatorios 24h antes. |
 | **Pagos USD** | Stripe Connect | Split payments, escrow, payouts automáticos a proveedores. |
 | **Pagos GTQ** | Banrural API + QPaypro + Visa QR | Pagos locales en Quetzales, acceso a banca rural. |
@@ -54,8 +54,8 @@
 | **Monorepo** | npm workspaces (evaluar Turborepo si crece) | Compartir UI, types, configs entre apps. |
 
 ### Nota importante sobre stack descartado
-- `n8n` fue descartado como motor de automatización (aparece en el business case HTML v2.0 pero fue eliminado en `CLAUDE.md`).
-- `Dialogflow CX` fue descartado como stack de AI/Chat (misma razón: aparece en business case pero fue eliminado en `CLAUDE.md`).
+- `n8n` fue descartado como motor de automatización (legacy en business case HTML v2.0, removido de configs).
+- `Dialogflow CX` fue descartado como stack de AI/Chat (legacy en business case HTML v2.0, removido de configs).
 
 ---
 
@@ -131,7 +131,7 @@
 
 ## 6. Estructura de Carpetas
 
-### 6.1 Actual (solo documentos)
+### 6.1 Actual (MVP funcional)
 
 ```
 projecto-alquifiestas/
@@ -139,12 +139,26 @@ projecto-alquifiestas/
 │   └── alquifiestas-1m-year.html
 └── projects/
     └── alquifiestas/
-        ├── README.md
+        ├── apps/
+        │   └── web/              # Next.js 14 funcional
+        │       ├── app/          # Route groups (public, auth, dashboard, api)
+        │       ├── components/   # UI base + productos
+        │       ├── hooks/        # useAuth (Zustand)
+        │       ├── lib/          # Seeds, utils, DB types, AI matching
+        │       └── public/images/# Assets estáticos (seeds)
+        ├── docs/
+        │   └── FAL_AI.md         # Nota de herramienta dev (NO parte del producto)
+        ├── scripts/
+        │   └── generate-images.mjs # Script dev para seeds visuales
+        ├── supabase/
+        │   └── seed.sql          # SQL seeds
+        ├── .github/workflows/
+        │   └── ci.yml            # GitHub Actions (lint, typecheck, build)
         ├── CLAUDE.md
         ├── HERMES_CONTEXT.md
         ├── package.json
         ├── .env.example
-        └── .gitignore
+        └── netlify.toml
 ```
 
 ### 6.2 Objetivo (monorepo con npm workspaces)
@@ -582,10 +596,11 @@ cd engine
 
 ## 23. Notas para el Agente
 
-1. **Este proyecto está en fase 0 de planificación.** No existe código fuente, base de datos, ni aplicación web aún.
+1. **Este proyecto tiene un MVP frontend funcional.** La app web existe con seeds en memoria. El backend real (DB, Edge Functions, pagos) está pendiente.
 2. **Las decisiones críticas pendientes (sección 13) deben resolverse antes de cualquier implementación.**
 3. **El business case HTML v2.0 está desactualizado** respecto al stack descartado (n8n, Dialogflow CX). Usar `CLAUDE.md` y este documento como fuente de verdad.
-4. **La filosofía del proyecto prioriza impacto social sobre revenue puro.** Las métricas de "amor" (proveedores rurales, horas ahorradas, acceso a crédito) son tan importantes como las financieras.
+4. **Las imágenes en `public/images/` son seeds estáticos.** El destino real para fotos de proveedores es Supabase Storage. El script `generate-images.mjs` y fal.ai son herramientas de desarrollo, NO parte del producto.
+5. **La filosofía del proyecto prioriza impacto social sobre revenue puro.** Las métricas de "amor" (proveedores rurales, horas ahorradas, acceso a crédito) son tan importantes como las financieras.
 5. **El foco geográfico es Guatemala primero,** con expansión a El Salvador y Honduras en fase 2, y Nicaragua/Costa Rica en fase 3.
 6. **El monorepo usa npm workspaces** (no Turborepo aún, evaluar si escala).
 7. **Toda implementación debe considerar:**

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Armchair, Castle, Music, Tent, Utensils, Sparkles, Camera, Wine } from "lucide-react";
+import { Armchair, Castle, Music, Tent, Utensils, Sparkles, Camera, Wine, Building } from "lucide-react";
 import type { Category } from "@/lib/seeds/categories";
 
 const iconMap: Record<string, React.ElementType> = {
@@ -14,6 +14,7 @@ const iconMap: Record<string, React.ElementType> = {
   Sparkles,
   Camera,
   Wine,
+  Building,
 };
 
 interface CategoryCardProps {

@@ -2,10 +2,12 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useSupabase } from "@/components/providers/SupabaseProvider";
 
 export default function RegisterProviderPage() {
   const { supabase } = useSupabase();
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
@@ -37,12 +39,11 @@ export default function RegisterProviderPage() {
         id: data.user.id,
         email,
         full_name: fullName,
-        business_name: businessName,
         role: "provider",
         preferred_currency: "GTQ",
-      } as any);
+      });
 
-      window.location.href = "/dashboard";
+      router.push("/dashboard");
     }
 
     setLoading(false);

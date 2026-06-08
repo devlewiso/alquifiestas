@@ -2,10 +2,12 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useSupabase } from "@/components/providers/SupabaseProvider";
 
 export default function LoginPage() {
   const { supabase } = useSupabase();
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -24,8 +26,7 @@ export default function LoginPage() {
     if (error) {
       setError(error.message);
     } else {
-      // Redirect handled by middleware + client state
-      window.location.href = "/dashboard";
+      router.push("/dashboard");
     }
 
     setLoading(false);

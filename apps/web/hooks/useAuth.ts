@@ -26,7 +26,10 @@ export const useAuth = create<AuthState>((set) => ({
     const supabase = createClient();
     await supabase.auth.signOut();
     set({ user: null, session: null, profile: null, isAuthenticated: false });
-    window.location.href = "/";
+    // Navigate via window.location to force full reload and clear all client state
+    if (typeof window !== "undefined") {
+      window.location.href = "/";
+    }
   },
 
   refresh: async () => {

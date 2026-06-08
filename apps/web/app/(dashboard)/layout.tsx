@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
 
 export default function DashboardLayout({
@@ -10,10 +11,17 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const { refresh, signOut, user, profile, isLoading } = useAuth();
+  const router = useRouter();
 
   useEffect(() => {
     refresh();
   }, [refresh]);
+
+  useEffect(() => {
+    if (!isLoading && !user) {
+      router.push("/login");
+    }
+  }, [isLoading, user, router]);
 
   if (isLoading) {
     return (
@@ -24,9 +32,6 @@ export default function DashboardLayout({
   }
 
   if (!user) {
-    if (typeof window !== "undefined") {
-      window.location.href = "/login";
-    }
     return null;
   }
 

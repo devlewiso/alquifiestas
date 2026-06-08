@@ -1,8 +1,24 @@
+/**
+ * ⚠️  Script de desarrollo — NO parte del producto Alquifiestas.
+ * Genera assets visuales de seed con fal.ai (flux/schnell).
+ * Las imágenes resultantes se copian a apps/web/public/images/ y se
+ * versionan como estáticos.  El runtime del producto NO depende de fal.ai.
+ *
+ * Uso:
+ *   export FAL_KEY="<tu-key>"
+ *   node scripts/generate-images.mjs
+ */
 import fs from "fs";
 import path from "path";
 
-const FAL_KEY = "2cd2fb5c-fd3e-4660-97af-d318378141c1:3db09aa667e2e5b815c650dc3f6ccb6a";
+const FAL_KEY = process.env.FAL_KEY;
 const OUT_DIR = path.resolve("apps/web/public/images");
+
+if (!FAL_KEY) {
+  console.error("❌ FAL_KEY no está definida. Exportala antes de correr el script:");
+  console.error("   export FAL_KEY='<tu-key>'");
+  process.exit(1);
+}
 
 const images = [
   { file: "silla.jpg", prompt: "elegant white tiffany chairs and round tables setup for a wedding reception, soft warm lighting, professional event photography, clean modern background, 4k quality" },
@@ -58,7 +74,6 @@ async function generateImage(prompt, outFile) {
   const submitData = await submitRes.json();
   console.log(`   Request ID: ${submitData.request_id}`);
 
-  // Poll using the status_url from the response
   let result = null;
   for (let i = 0; i < 120; i++) {
     await new Promise((r) => setTimeout(r, 1500));

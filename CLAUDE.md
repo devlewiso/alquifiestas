@@ -1,6 +1,6 @@
 # Alquifiestas — Contexto Maestro para Claude Code
 
-> **Estado:** Planificación activa. Ningún código implementado aún.
+> **Estado:** MVP funcional con seeds en memoria. Frontend completo. Backend/DB en modo seed.
 > **Objetivo:** Marketplace B2B2C de alquiler de equipos y servicios para eventos en Guatemala y Centroamérica.
 > **Meta de negocio:** Q8M GTQ/año + $1M USD/año (Año 3).
 > **Filosofía:** "Love as a metric. People over revenue. Action over explanation."
@@ -32,13 +32,13 @@
 | **Frontend Mobile (futuro)** | Tauri + React Native | Una codebase, multi-plataforma. |
 | **Backend** | Supabase (PostgreSQL + Auth + Edge Functions) | Auth lista, DB real-time, Row Level Security, Edge Functions serverless. |
 | **Edge Functions** | Deno (TypeScript) | Serverless en Supabase, baja latencia, sin servidor propio. |
-| **Automatización** | *Stack a definir* | Motor interno de flujos: booking, pagos, recordatorios, invoices. Evaluar: Edge Functions + cron, Inngest, Temporal, o BullMQ. |
-| **AI / Chat** | *Stack a definir* | Soporte automatizado y calificación de leads. Evaluar: solución propia con LLM, Intercom, o proveedor local LATAM. |
+| **Automatización** | *Stack a definir* | Motor interno de flujos: booking, pagos, recordatorios, invoices. Evaluar: Inngest, Temporal, o BullMQ. |
+| **AI / Chat** | Motor de matching propio (TypeScript) | Scoring multi-factorial para matching cliente↔proveedor. Ya implementado en frontend. Chat soporte a definir. |
 | **Comunicación** | WhatsApp Business API | Notificaciones, confirmaciones, recordatorios 24h antes. |
 | **Pagos USD** | Stripe Connect | Split payments, escrow, payouts automáticos a proveedores. |
 | **Pagos GTQ** | Banrural API + QPaypro + Visa QR | Pagos locales en Quetzales, acceso a banca rural. |
 | **Infra** | Proxmox (asgard) + Docker + Cloudflare Tunnel | Self-hosted, costo controlado, privacidad de datos LATAM. |
-| **Monorepo** | npm workspaces (evaluar Turborepo si crece) | Compartir UI, types, configs entre apps. |
+| **Monorepo** | npm workspaces (monorepo parcial — solo apps/web tiene código) | Evaluar Turborepo si se agrega apps/marketing o packages/ui. |
 
 ---
 
@@ -49,25 +49,25 @@
 ---
 
 ### ETAPA 0 — Fundamentos del Proyecto (Actual)
-**Status:** `EN CURSO`
-**Output esperado:** Este documento + estructura de directorios + inicialización de repo.
+**Status:** `COMPLETADA (con avances en etapas 1-4)`
+**Output esperado:** Repo inicializado, app web funcional con seeds, CI/CD activo, landing completa.
 
 **Tareas:**
 - [x] Definir stack tecnológico
 - [x] Definir estructura de carpetas del monorepo
 - [x] Crear business case (HTML) con métricas de negocio
 - [x] Crear CLAUDE.md (contexto maestro)
-- [ ] Inicializar repositorio Git (`git init`, `.gitignore`, commits semánticos)
-- [ ] Crear `package.json` root con workspaces
-- [ ] Crear `.env.example` con todas las variables necesarias
-- [ ] Definir convention de commits (Conventional Commits)
-- [ ] Definir branching strategy (trunk-based o GitFlow simplificado)
-- [ ] Crear `.github/workflows/` templates vacíos (CI/CD futuro)
+- [x] Inicializar repositorio Git (`git init`, `.gitignore`, commits semánticos)
+- [x] Crear `package.json` root con workspaces
+- [x] Crear `.env.example` con variables necesarias
+- [x] Definir convention de commits (Conventional Commits)
+- [x] Definir branching strategy (trunk-based)
+- [x] Crear `.github/workflows/` CI (lint, typecheck, build)
 
 ---
 
 ### ETAPA 1 — Diseño de Producto y UX
-**Status:** `PENDIENTE`
+**Status:** `PARCIAL — seeds y UI completos, faltan wireframes formales y validación con usuarios reales`
 **Output esperado:** Wireframes, user flows, diseño de DB completo, decisiones de UX documentadas.
 
 **1.1 User Research & Validación**
@@ -95,7 +95,7 @@
 ---
 
 ### ETAPA 2 — Arquitectura de Base de Datos
-**Status:** `PENDIENTE`
+**Status:** `PARCIAL — tipos TypeScript definidos, seeds SQL creados, pero sin migrations ni RLS en producción`
 **Output esperado:** Esquema SQL completo, RLS policies, triggers, índices, seeds de prueba.
 
 **2.1 Entidades Core**
@@ -160,7 +160,7 @@ CREATE TABLE payments (
 ---
 
 ### ETAPA 3 — Arquitectura de API y Backend
-**Status:** `PENDIENTE`
+**Status:** `PARCIAL — rutas de API definidas en Next.js, proxy de servicios externos, pero sin Edge Functions deployadas`
 **Output esperado:** Documento de API (OpenAPI spec), lista de Edge Functions, webhooks definidos.
 
 **3.1 API Routes (Next.js App Router)**
@@ -209,7 +209,7 @@ CREATE TABLE payments (
 ---
 
 ### ETAPA 4 — Arquitectura de Frontend
-**Status:** `PENDIENTE`
+**Status:** `AVANZADA — componentes base, design tokens via Tailwind, routing map implementado, Zustand elegido`
 **Output esperado:** Component tree, state management decisions, routing map, design tokens.
 
 **4.1 Estructura de Rutas (Next.js App Router)**
@@ -646,12 +646,12 @@ alquifiestas/
 
 1. **¿Motor de automatización: Edge Functions + cron, Inngest, Temporal, BullMQ, u otro?** (Impacta: infra, costo, robustez de flujos) ← *Crítica, bloquea Etapa 5*
 2. **¿Stack de AI/Chat: LLM propio, Intercom, proveedor local LATAM, o bot reglas para MVP?** (Impacta: Etapa 9)
-3. **¿Monorepo con npm workspaces o Turborepo?** (Impacta: build, caching, CI)
+3. **¿Migrar a Turborepo?** (Impacta: build, caching, CI — npm workspaces funciona por ahora)
 4. **¿Server Actions de Next.js o API Routes tradicionales?** (Impacta: arquitectura backend)
-5. **¿Zustand o React Context para estado global?** (Impacta: complejidad frontend)
-6. **¿Supabase Storage o Cloudflare R2 para imágenes?** (Impacta: costo, CDN)
+5. **✅ Zustand elegido para estado global** (implementado en auth)
+6. **¿Supabase Storage o Cloudflare R2 para imágenes de proveedores?** (Impacta: costo, CDN — seeds estáticos locales por ahora)
 7. **¿App móvil en fase 1 (PWA) o fase 2 (nativa)?** (Impacta: scope MVP)
-8. **¿Chat interno en app o todo por WhatsApp?** (Impacta: UX, costo)
+8. **¿Chat interno en app o todo por WhatsApp?** (Impacta: UX, costo — wa.me links por ahora)
 9. **¿Escrow automático o manual en fase 1?** (Impacta: complejidad de pagos)
 10. **¿Verificación de proveedores automática (AI) o manual en MVP?** (Impacta: tiempo al mercado)
 11. **¿Stripe Connect Express o Custom para payouts?** (Impacta: UX del proveedor, compliance)
