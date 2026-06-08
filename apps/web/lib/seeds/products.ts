@@ -205,4 +205,23 @@ export const seedProducts: SeedProduct[] = [
     images: ["/images/vajilla.jpg"],
     is_active: true, location: "Quetzaltenango", rating: 4.3, review_count: 42,
   },
+  // Salones y Lugares (nueva categoría)
+  {
+    id: "prod-21", provider_id: "prov-11", provider_name: "Salón El Mirador",
+    category_id: "cat-salones", category_slug: "salones-y-lugares",
+    name: "Salón Principal Vista Panorámica",
+    description: "Salón elegante con piso de mármol, iluminación LED, barra integrada y terraza al aire libre. Vista a la ciudad de Guatemala. Capacidad 300 personas.",
+    price_gtq: 15000, price_usd: 1911, unit: "evento",
+    images: ["/images/salon.jpg"],
+    is_active: true, location: "Zona 15, Ciudad de Guatemala", rating: 4.9, review_count: 62,
+  },
+  {
+    id: "prod-22", provider_id: "prov-11", provider_name: "Salón El Mirador",
+    category_id: "cat-salones", category_slug: "salones-y-lugares",
+    name: "Jardín Exterior con Pérgola",
+    description: "Jardín privado con pérgola de madera, luces de guirnalda y estanque decorativo. Ideal para ceremonias y recepciones íntimas. Capacidad 80 personas.",
+    price_gtq: 8000, price_usd: 1020, unit: "evento",
+    images: ["/images/salon.jpg"],
+    is_active: true, location: "Zona 15, Ciudad de Guatemala", rating: 4.8, review_count: 35,
+  },
 ];

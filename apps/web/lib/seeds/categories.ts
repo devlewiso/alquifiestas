@@ -81,4 +81,13 @@ export const categories: Category[] = [
     imageUrl: "/images/vajilla.jpg",
     productCount: 78,
   },
+  {
+    id: "cat-salones",
+    name: "Salones y Lugares",
+    slug: "salones-y-lugares",
+    description: "Salones de eventos, jardines, haciendas, terrazas y espacos únicos para tu celebración.",
+    icon: "Building",
+    imageUrl: "/images/salon.jpg",
+    productCount: 25,
+  },
 ];
