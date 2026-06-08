@@ -14,7 +14,7 @@ interface ProductCardProps {
 export function ProductCard({ product }: ProductCardProps) {
   return (
     <Card className="overflow-hidden hover:shadow-md transition-shadow group">
-      <Link href={`/search?product=${product.id}`}>
+      <Link href={`/product/${product.id}`}>
         <div className="relative aspect-[4/3] overflow-hidden">
           <Image
             src={product.images[0]}
@@ -31,8 +31,12 @@ export function ProductCard({ product }: ProductCardProps) {
       <CardContent className="p-4">
         <div className="flex items-start justify-between gap-2">
           <div>
-            <h3 className="font-semibold text-sm line-clamp-1">{product.name}</h3>
-            <p className="text-xs text-muted-foreground mt-0.5">{product.provider_name}</p>
+            <Link href={`/product/${product.id}`}>
+              <h3 className="font-semibold text-sm line-clamp-1 hover:text-primary transition-colors">{product.name}</h3>
+            </Link>
+            <Link href={`/providers/${product.provider_id}`}>
+              <p className="text-xs text-muted-foreground mt-0.5 hover:text-primary transition-colors">{product.provider_name}</p>
+            </Link>
           </div>
         </div>
         <div className="flex items-center gap-1 text-xs text-muted-foreground mt-2">
